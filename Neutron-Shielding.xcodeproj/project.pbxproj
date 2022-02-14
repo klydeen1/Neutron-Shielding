@@ -17,6 +17,10 @@
 		656CD8CB27B727920009DDE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CD8A127B7278F0009DDE9 /* ContentView.swift */; };
 		656CD8CC27B727920009DDE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656CD8A227B727920009DDE9 /* Assets.xcassets */; };
 		656CD8CD27B727920009DDE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656CD8A227B727920009DDE9 /* Assets.xcassets */; };
+		656CD8DD27B7290F0009DDE9 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CD8DC27B7290F0009DDE9 /* DrawingView.swift */; };
+		656CD8DE27B729100009DDE9 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CD8DC27B7290F0009DDE9 /* DrawingView.swift */; };
+		656CD8E027B72A440009DDE9 /* NeutronShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CD8DF27B72A440009DDE9 /* NeutronShield.swift */; };
+		656CD8E127B72A440009DDE9 /* NeutronShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CD8DF27B72A440009DDE9 /* NeutronShield.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,8 @@
 		656CD8C027B727920009DDE9 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		656CD8C427B727920009DDE9 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		656CD8C627B727920009DDE9 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		656CD8DC27B7290F0009DDE9 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		656CD8DF27B72A440009DDE9 /* NeutronShield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeutronShield.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,8 @@
 			children = (
 				656CD8A027B7278F0009DDE9 /* Neutron_ShieldingApp.swift */,
 				656CD8A127B7278F0009DDE9 /* ContentView.swift */,
+				656CD8DF27B72A440009DDE9 /* NeutronShield.swift */,
+				656CD8DC27B7290F0009DDE9 /* DrawingView.swift */,
 				656CD8A227B727920009DDE9 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -299,7 +307,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656CD8DD27B7290F0009DDE9 /* DrawingView.swift in Sources */,
 				656CD8CA27B727920009DDE9 /* ContentView.swift in Sources */,
+				656CD8E027B72A440009DDE9 /* NeutronShield.swift in Sources */,
 				656CD8C827B727920009DDE9 /* Neutron_ShieldingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,7 +318,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656CD8DE27B729100009DDE9 /* DrawingView.swift in Sources */,
 				656CD8CB27B727920009DDE9 /* ContentView.swift in Sources */,
+				656CD8E127B72A440009DDE9 /* NeutronShield.swift in Sources */,
 				656CD8C927B727920009DDE9 /* Neutron_ShieldingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
