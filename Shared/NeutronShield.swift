@@ -10,6 +10,7 @@ import Foundation
 class NeutronShield: NSObject, ObservableObject {
     @MainActor @Published var insideData = [(xPoint: Double, yPoint: Double)]()
     @MainActor @Published var outsideData = [(xPoint: Double, yPoint: Double)]()
+    @MainActor @Published var singleParticleData = [(xPoint: Double, yPoint: Double)]()
     @Published var energyLossString = ""
     @Published var particleCountString = ""
     @Published var percentEscapedString = ""
@@ -25,6 +26,7 @@ class NeutronShield: NSObject, ObservableObject {
         super.init()
         insideData = []
         outsideData = []
+        singleParticleData = []
     }
     
     func RandomWalk() async {
@@ -33,9 +35,16 @@ class NeutronShield: NSObject, ObservableObject {
         
         var newInsidePoints : [(xPoint: Double, yPoint: Double)] = []
         var newOutsidePoints : [(xPoint: Double, yPoint: Double)] = []
+        var newSingleParticlePoints : [(xPoint: Double, yPoint: Double)] = []
         
-        for _ in stride(from: 1, through: particleCount, by: 1) {
-            var position = (xPoint: meanFreePath, yPoint: 4.0) //4.0
+        for count in stride(from: 1, through: particleCount, by: 1) {
+            var position = (xPoint: meanFreePath, yPoint: 4.0)
+            
+            // Record the initial position of the first particle
+            if count == 1 {
+                newSingleParticlePoints.append(position)
+            }
+            
             var energy = 100.0
             while energy > 0.0 {
                 // Get a random angle
@@ -44,6 +53,11 @@ class NeutronShield: NSObject, ObservableObject {
                 position.xPoint += meanFreePath * cos(angle)
                 position.yPoint += meanFreePath * sin(angle)
                 energy -= energyLoss
+                
+                // Record the current position of the first particle
+                if count == 1 {
+                    newSingleParticlePoints.append(position)
+                }
                 
                 if (position.xPoint > wallLength || position.yPoint > wallLength || position.xPoint < 0.0 || position.yPoint < 0.0) {
                     // Particle has escaped the box
@@ -76,7 +90,7 @@ class NeutronShield: NSObject, ObservableObject {
             plotOutsidePoints.removeSubrange(750001..<newOutsidePoints.count)
         }
             
-        await updateData(insidePoints: plotInsidePoints, outsidePoints: plotOutsidePoints)
+        await updateData(insidePoints: plotInsidePoints, outsidePoints: plotOutsidePoints, singleParticlePoints: newSingleParticlePoints)
         await updatePercentEscapedString(text: "\(percentEscaped)")
     }
     
@@ -85,10 +99,10 @@ class NeutronShield: NSObject, ObservableObject {
     /// - Parameters:
     ///   - insidePoints: points inside the circle of the given radius
     ///   - outsidePoints: points outside the circle of the given radius
-    @MainActor func updateData(insidePoints: [(xPoint: Double, yPoint: Double)] , outsidePoints: [(xPoint: Double, yPoint: Double)]){
-        
+    @MainActor func updateData(insidePoints: [(xPoint: Double, yPoint: Double)], outsidePoints: [(xPoint: Double, yPoint: Double)], singleParticlePoints: [(xPoint: Double, yPoint: Double)]){
         insideData.append(contentsOf: insidePoints)
         outsideData.append(contentsOf: outsidePoints)
+        singleParticleData.append(contentsOf: singleParticlePoints)
     }
     
     /// updatePercentEscapedString

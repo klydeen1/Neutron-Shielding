@@ -11,7 +11,7 @@ struct ContentView: View {
     @State var energyLossString = "10"
     @State var particleCountString = "100"
     @State var percentEscapedString = "0.0"
-    
+    @State var isChecked:Bool = false
     
     // Setup the GUI to monitor the data from the Monte Carlo Integral Calculator
     @ObservedObject var neutronShield = NeutronShield(withData: true)
@@ -52,10 +52,14 @@ struct ContentView: View {
                     
                     ProgressView()
                 }
+                Toggle(isOn: $isChecked) {
+                            Text("Plot Single Particle")
+                        }
+                .padding()
             }
             .padding()
             //DrawingField
-            drawingView(redLayer:$neutronShield.insideData, blueLayer:$neutronShield.outsideData)
+            drawingView(redLayer:$neutronShield.insideData, blueLayer:$neutronShield.outsideData, singleParticleLayer:$neutronShield.singleParticleData, checked:$isChecked)
                 .padding()
                 .aspectRatio(1, contentMode: .fit)
                 .drawingGroup()
@@ -86,6 +90,7 @@ struct ContentView: View {
     @MainActor func clearPlot() async {
         neutronShield.insideData = []
         neutronShield.outsideData = []
+        neutronShield.singleParticleData = []
     }
 }
 
